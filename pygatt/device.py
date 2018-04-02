@@ -64,6 +64,19 @@ class BLEDevice(object):
         """
         raise NotImplementedError()
 
+    def char_read_long(self, uuid):
+        """
+        Reads a long Characteristic by UUID.
+
+        uuid -- UUID of Characteristic to read as a string.
+
+        Returns a bytearray containing the characteristic value on success.
+
+        Example:
+            my_ble_device.char_read_long('a1e8f5b1-696b-4e4c-87c6-69dfe0b0093b')
+        """
+        raise NotImplementedError()
+
     def char_read_handle(self, uuid):
         """
         Reads a Characteristic by handle.

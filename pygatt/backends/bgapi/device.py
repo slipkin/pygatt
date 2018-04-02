@@ -75,6 +75,10 @@ class BGAPIBLEDevice(BLEDevice):
         return self.char_read_handle(self.get_handle(uuid), timeout=timeout)
 
     @connection_required
+    def char_read_long(self, uuid, timeout=None):
+        return self.char_read_long_handle(self.get_handle(uuid), timeout=timeout)
+
+    @connection_required
     def char_read_handle(self, handle, timeout=None):
         log.info("Reading characteristic at handle %d", handle)
         self._backend.send_command(

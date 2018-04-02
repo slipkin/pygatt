@@ -525,7 +525,36 @@ class GATTToolBackend(BLEBackend):
         return bytearray([int(x, 16) for x in rval])
 
     @at_most_one_device
+    def char_read_long(self, uuid, timeout=1):
+        """
+        Reads a Characteristic by uuid.
+        :param uuid: UUID of Characteristic to read.
+        :type uuid: str
+        :return: bytearray of result.
+        :rtype: bytearray
+        """
+        with self._receiver.event("value", timeout=timeout):
+            self.sendline('char-read-uuid %s' % uuid)
+        rval = self._receiver.last_value("value", "after").split()[1:]
+        return bytearray([int(x, 16) for x in rval])
+
+    @at_most_one_device
     def char_read_handle(self, handle, timeout=4):
+        """
+        Reads a Characteristic by handle.
+        :param handle: handle of Characteristic to read.
+        :type handle: str
+        :return: bytearray of result.
+        :rtype: bytearray
+        """
+        with self._receiver.event("value/descriptor", timeout=timeout):
+            self.sendline('char-read-hnd %s' % handle)
+        rval = self._receiver.last_value("value/descriptor", "after"
+                                         ).split()[1:]
+        return bytearray([int(x, 16) for x in rval])
+
+    @at_most_one_device
+    def char_read_long_handle(self, handle, timeout=4):
         """
         Reads a Characteristic by handle.
         :param handle: handle of Characteristic to read.
