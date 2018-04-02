@@ -77,6 +77,19 @@ class BLEDevice(object):
         """
         raise NotImplementedError()
 
+    def char_read_long_handle(self, uuid):
+        """
+        Long reads a Characteristic by handle.
+
+        handle -- handle of Characteristic to long read.
+
+        Returns a bytearray containing the characteristic value on success.
+
+        Example:
+            my_ble_device.char_read_long_handle(5)
+        """
+        raise NotImplementedError()
+
     def char_write(self, uuid, value, wait_for_response=False):
         """
         Writes a value to a given characteristic UUID.

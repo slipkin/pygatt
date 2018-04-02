@@ -19,3 +19,5 @@ pygatt/bluegiga/test.py
 .eggs/
 env/
 env3.5/
+.DS_Store
+
